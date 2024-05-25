@@ -1,0 +1,388 @@
+@mixin mobile {
+  @media screen and (max-width: 480px) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media screen and (max-width: 768px) {
+    @content;
+  }
+}
+
+@mixin laptop {
+  @media screen and (max-width: 1200px) {
+    @content;
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Register Page Styling */
+.form_container {
+  background: #a7bcff;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* Form Wrapper */
+  .form_wrapper {
+    background: #fff;
+    padding: 20px 60px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+
+    /* Logo */
+    .logo {
+      color: #5d5b8d;
+      font-weight: bold;
+      font-size: 24px;
+    }
+
+    /* Page Title */
+    .title {
+      color: #5d5b8d;
+      font-size: 13px;
+    }
+
+    /* Actual Form */
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+
+      /* Input Fields */
+      input {
+        padding: 13px;
+        border: none;
+        outline: none;
+        width: 250px;
+        border-bottom: 1px solid #a7bcff;
+
+        &::placeholder {
+          color: rgba(175, 175, 175);
+        }
+      }
+
+      /* Register Button */
+      button {
+        background: #7b96ec;
+        color: #fff;
+        padding: 10px;
+        font-weight: bold;
+        border: none;
+        cursor: pointer;
+        transition: all 300ms ease;
+
+        &:hover {
+          background: #5872c5;
+        }
+      }
+
+      label {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        .icon {
+          color: #5d5b8d;
+          font-size: 20px;
+        }
+
+        .icon_tag {
+          color: rgba(175, 175, 175);
+          font-size: 12px;
+        }
+      }
+    }
+
+    /* Last p tag to navigate between login and register */
+    p {
+      color: #5d5b8d;
+      font-size: 12px;
+      margin-block: 10px;
+    }
+  }
+}
+
+/* Home Page Styling */
+.home {
+  background: #a7bcff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+
+  /* Container of the content */
+  .container {
+    border: 1px solid #fff;
+    border-radius: 12px;
+    width: 90vw;
+    height: 90vh;
+    display: flex;
+    overflow: hidden;
+    @include tablet {
+      width: 90%;
+    }
+
+    /* Sidebar Component that contain Navbar component */
+    .sidebar {
+      flex: 1;
+      background: #3e3c61;
+      border: 1px solid #3e3c61;
+      color: #fff;
+      position: relative;
+
+      /* Navbar Styling */
+      .navbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: #2f2d52;
+        height: 50px;
+        padding: 10px;
+
+        /* Logo name */
+        .logo {
+          font-weight: bold;
+          @include tablet {
+            display: none;
+          }
+        }
+
+        /* User --> Profile | Name | Logout Button */
+        .user {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+
+          /* Profile Picture */
+          img {
+            background: #ddddf7;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            object-fit: cover;
+          }
+
+          /* Logout Button */
+          button {
+            background: #5d5b8d;
+            color: #ddddf7;
+            font-size: 10px;
+            padding: 4px 8px;
+            cursor: pointer;
+            border: none;
+            @include tablet {
+              position: absolute;
+              bottom: 10px;
+            }
+          }
+        }
+      }
+
+      /* Search Bar that used to search a new user */
+      .search {
+        border-bottom: 1px solid #ddddf7;
+
+        /* Form for search */
+        .search_form {
+          padding: 10px;
+
+          input {
+            background: transparent;
+            border: none;
+            outline: none;
+
+            &::placeholder {
+              color: #ddddf7;
+            }
+          }
+        }
+      }
+
+      .user_chat {
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        cursor: pointer;
+
+        &:hover {
+          background: #2f2d52;
+        }
+
+        img {
+          width: 50px;
+          height: 50px;
+          border-radius: 50%;
+          object-fit: cover;
+        }
+
+        /* User Chat Information */
+        .user_chatInfo {
+          span {
+            font-size: 18px;
+            font-weight: 500;
+          }
+
+          p {
+            font-size: 14px;
+            color: lightgray;
+          }
+        }
+      }
+    }
+
+    /* Chat component -> main chat */
+    .chat {
+      flex: 2;
+
+      .chatInfo {
+        height: 50px;
+        background: #5d5b8d;
+        color: #ddddf7;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px;
+
+        /* Icons */
+        .chat_icons {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+
+          /* Actual Icon */
+          span {
+            font-size: 18px;
+          }
+        }
+      }
+
+      /* Messages div that contain the chat between users */
+      .messages {
+        background: #ddddf7;
+        padding: 10px;
+        height: calc(100% - 100px);
+        overflow-y: scroll;
+        overflow-x: hidden;
+
+        /* Message */
+        .message {
+          display: flex;
+          gap: 20px;
+          margin-bottom: 20px;
+
+          /* User Info */
+          .messageInfo {
+            display: flex;
+            flex-direction: column;
+            color: gray;
+            font-weight: 300;
+
+            img {
+              width: 35px;
+              height: 35px;
+              border-radius: 50%;
+              object-fit: cover;
+            }
+          }
+
+          .messageContent {
+            max-width: 80%;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+
+            p {
+              background: #fff;
+              padding: 10px 20px;
+              border-radius: 0px 10px 10px 10px;
+              max-width: max-content;
+            }
+
+            img {
+              width: 50%;
+            }
+          }
+
+          &.owner {
+            flex-direction: row-reverse;
+
+            .messageContent {
+              align-items: flex-end;
+
+              p {
+                background: #8da4f1;
+                color: #fff;
+                border-radius: 10px 0 10px 10px;
+              }
+            }
+          }
+        }
+      }
+
+      /* Input field that used for typing the message */
+      .input {
+        height: 50px;
+        background: #fff;
+        padding: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        /* Input field */
+        input {
+          width: 85%;
+          border: none;
+          outline: none;
+          color: #2f2d52;
+          font-size: 16px;
+
+          &::placeholder {
+            color: rgb(182, 181, 181);
+          }
+        }
+
+        /* Send div contains -> two Icons and a Send Button */
+        .send {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+
+          /* Icons */
+          span {
+            width: 15px;
+            cursor: pointer;
+            color: #2f2d52;
+          }
+
+          /* Send Button */
+          button {
+            border: none;
+            color: #fff;
+            background: #8da4f1;
+            padding: 10px 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 300ms ease;
+
+            &:hover {
+              background: #6d81c1;
+            }
+          }
+        }
+      }
+    }
+  }
+}
